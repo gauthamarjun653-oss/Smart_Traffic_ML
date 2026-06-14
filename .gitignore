@@ -1,0 +1,30 @@
+# Python virtual environment
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# SQLite Database
+*.db
+backend/traffic_violations.db
+
+# Large media & model folders
+backend/violations/*.jpg
+backend/violations/*.png
+backend/models/*.pt
+backend/videos/*.mp4
+backend/videos/*.avi
+backend/videos/*.mov
+
+# Frontend build & packages
+node_modules/
+frontend/node_modules/
+frontend/dist/
+dist/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
