@@ -156,8 +156,6 @@ def run_video_processing(video_path: str):
 # REST Endpoints
 @app.get("/api/violations", response_model=list)
 def read_violations(skip: int = 0, limit: int = 50, db: Session = Depends(get_db)):
-    violations = db.query(Violation).order_id(Violation.id.desc()).offset(skip).limit(limit).all()
-    # Or just standard ordering
     return db.query(Violation).order_by(Violation.id.desc()).offset(skip).limit(limit).all()
 
 @app.get("/api/stats")
