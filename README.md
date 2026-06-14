@@ -75,11 +75,8 @@ cd Smart_Traffic_ML
 python3.12 -m venv venv
 source venv/bin/activate
 
-# Install PyTorch with CUDA support
-pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
-
-# Install YOLO, OpenCV, FastAPI, and remaining packages
-pip install ultralytics opencv-python fastapi uvicorn websockets sqlalchemy
+# Install all packages (PyTorch with CUDA, YOLO, FastAPI, OpenCV, python-multipart, etc.)
+pip install -r requirements.txt
 ```
 
 ### 2. Generate the Simulated Traffic Demo Video
