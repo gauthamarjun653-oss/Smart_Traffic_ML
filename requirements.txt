@@ -1,0 +1,17 @@
+# PyTorch and Torchvision (CUDA 12.1 enabled)
+--extra-index-url https://download.pytorch.org/whl/cu121
+torch==2.5.1+cu121
+torchvision==0.20.1+cu121
+
+# Computer Vision
+ultralytics>=8.0.0
+opencv-python>=4.8.0
+
+# Backend Web Server
+fastapi>=0.100.0
+uvicorn>=0.20.0
+websockets>=11.0
+python-multipart>=0.0.9
+
+# Database ORM
+sqlalchemy>=2.0.0
