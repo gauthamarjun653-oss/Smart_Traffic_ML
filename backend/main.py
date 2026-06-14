@@ -5,6 +5,7 @@ import math
 import base64
 import asyncio
 import threading
+from datetime import datetime
 from typing import List, Dict
 from fastapi import FastAPI, Depends, WebSocket, WebSocketDisconnect, UploadFile, File, BackgroundTasks, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -12,6 +13,20 @@ from fastapi.staticfiles import StaticFiles
 from sqlalchemy.orm import Session
 from backend.database import init_db, get_db, Violation
 from backend.video_processor import VideoProcessor
+from pydantic import BaseModel
+
+class ViolationResponse(BaseModel):
+    id: int
+    violation_type: str
+    timestamp: datetime
+    vehicle_id: int | None = None
+    vehicle_type: str | None = None
+    speed: float | None = None
+    screenshot_path: str | None = None
+    status: str | None = None
+
+    class Config:
+        from_attributes = True
 
 app = FastAPI(title="Smart Traffic Management System API")
 
@@ -155,7 +170,7 @@ def run_video_processing(video_path: str):
         loop.close()
 
 # REST Endpoints
-@app.get("/api/violations", response_model=list)
+@app.get("/api/violations", response_model=List[ViolationResponse])
 def read_violations(skip: int = 0, limit: int = 50, db: Session = Depends(get_db)):
     return db.query(Violation).order_by(Violation.id.desc()).offset(skip).limit(limit).all()
 
